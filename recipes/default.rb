@@ -21,5 +21,18 @@ marker "recipe_start_rightscale" do
   template "rightscale_audit_entry.erb"
 end
 
+# Due to issue https://github.com/gregsymons/di-ruby-lvm-attrib/issues/22
+# an update for LVM 2.0.2.115 was needed to work on RHEL/CentOS 7.1.
+# Once pull request is merged, issue closed, and rubygems updated,
+# this section and the source file can be removed.
+cookbook_file '/tmp/di-ruby-lvm-attrib-0.0.17.gem' do
+  source "di-ruby-lvm-attrib-0.0.17.gem"
+  action :nothing
+end.run_action(:create)
+chef_gem 'di-ruby-lvm-attrib' do
+  source '/tmp/di-ruby-lvm-attrib-0.0.17.gem'
+  action :install
+end
+
 include_recipe 'rightscale_volume::default'
 include_recipe 'rightscale_backup::default'
