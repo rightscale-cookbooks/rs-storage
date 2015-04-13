@@ -8,10 +8,10 @@ version          '1.0.3'
 
 depends 'chef_handler', '~> 1.1.6'
 depends 'filesystem', '~> 0.9.0'
-depends 'lvm', '~> 1.1.0'
+depends 'lvm', '~> 1.3.6'
 depends 'marker', '~> 1.0.1'
-depends 'rightscale_backup', '~> 1.1.5'
-depends 'rightscale_volume', '~> 1.2.4'
+depends 'rightscale_backup', '~> 1.1.8'
+depends 'rightscale_volume', '~> 1.2.7'
 
 recipe 'rs-storage::default', 'Sets up required dependencies for using this cookbook'
 recipe 'rs-storage::volume', 'Creates a volume and attaches it to the server'
