@@ -65,8 +65,8 @@ attribute 'rs-storage/device/volume_type',
 
 attribute 'rs-storage/device/filesystem',
   :display_name => 'Device Filesystem',
-  :description => 'The filesystem to be used on the device. Example: ext4',
-  :default => 'ext4',
+  :description => 'The filesystem to be used on the device. Defaults are based on OS and determined in' +
+    ' attributes/defaults.rb. Example: ext4',
   :recipes => ['rs-storage::volume', 'rs-storage::stripe'],
   :required => 'optional'
 
