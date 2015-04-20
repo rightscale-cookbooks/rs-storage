@@ -58,9 +58,10 @@ default['rs-storage']['device']['detach_timeout'] = 300
 # Whether to destroy volume(s) on decommission
 default['rs-storage']['device']['destroy_on_decommission'] = false
 
-# The additional options/flags to use for the `mkfs` command. If the whole device is formatted, the force (-F) flag
-# can be used (on ext4 filesystem) to force the operation. This flag may vary based on the filesystem type.
-default['rs-storage']['device']['mkfs_options'] = '-F'
+# The additional options/flags to use for the `mkfs` command. If the whole device is formatted, the force flag
+# can be used to force the operation. This flag varies based on the filesystem type.
+default['rs-storage']['device']['mkfs_options'] =
+  node['rs-storage']['device']['filesystem'] == 'xfs' ? '-f' : '-F'
 
 # The stripe size to use while creating LVM
 default['rs-storage']['device']['stripe_size'] = 512

@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@rightscale.com'
 license          'Apache 2.0'
 description      'Provides recipes for managing volumes on a Server in a RightScale supported cloud'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.0.4'
+version          '1.0.5'
 
 depends 'chef_handler', '~> 1.1.6'
 depends 'filesystem', '~> 0.10.0'
@@ -38,7 +38,9 @@ attribute 'rs-storage/device/mount_point',
 
 attribute 'rs-storage/device/nickname',
   :display_name => 'Device Nickname',
-  :description => 'Nickname for the device. Example: data_storage',
+  :description => 'Nickname for the device. rs-storage::volume uses this for the filesystem label, which is' +
+    ' restricted to 12 characters.  If longer than 12 characters, the filesystem label will be set to the' +
+    ' first 12 characters. Example: data_storage',
   :default => 'data_storage',
   :recipes => ['rs-storage::volume', 'rs-storage::stripe', 'rs-storage::decommission'],
   :required => 'recommended'
