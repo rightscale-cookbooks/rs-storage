@@ -48,7 +48,7 @@ if node['rs-storage']['restore']['lineage'].to_s.empty?
 
   # Filesystem label must be <= 12 chars
   filesystem device_nickname do
-    label device_nickname[0,12]
+    label device_nickname[0, 12]
     fstype node['rs-storage']['device']['filesystem']
     device lazy { node['rightscale_volume'][device_nickname]['device'] }
     mkfs_options node['rs-storage']['device']['mkfs_options']
