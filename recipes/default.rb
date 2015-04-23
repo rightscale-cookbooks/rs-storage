@@ -21,11 +21,16 @@ marker "recipe_start_rightscale" do
   template "rightscale_audit_entry.erb"
 end
 
-execute 'For redhat clear yum cache at compile phase' do
-  command 'yum clean expire-cache'
-  only_if { node['platform'] == 'redhat' }
-  action :nothing
-end.run_action(:run)
+# RHEL on some clouds take some time to add RHEL repos.
+# Check and wait a few seconds if RHEL repos are not yet installed.
+if node['platform'] == 'redhat'
+  Timeout.timeout(120) do
+    loop do
+      check_rhel_repo = Mixlib::ShellOut.new('yum repolist | grep ^rhel-x86_64-server').run_command
+      check_rhel_repo.exitstatus != 0 ? sleep(2) : break
+    end
+  end
+end
 
 include_recipe 'rightscale_volume::default'
 include_recipe 'rightscale_backup::default'
