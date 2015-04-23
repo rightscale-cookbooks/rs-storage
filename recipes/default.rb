@@ -21,9 +21,11 @@ marker "recipe_start_rightscale" do
   template "rightscale_audit_entry.erb"
 end
 
-execute 'yum clean expire-cache' do
-  only_if { node['platform_family'] == 'rhel' }
-end
+execute 'For redhat clear yum cache at compile phase' do
+  command 'yum clean expire-cache'
+  only_if { node['platform'] == 'redhat' }
+  action :nothing
+end.run_action(:run)
 
 include_recipe 'rightscale_volume::default'
 include_recipe 'rightscale_backup::default'
