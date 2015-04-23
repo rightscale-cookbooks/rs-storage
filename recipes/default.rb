@@ -27,7 +27,12 @@ if node['platform'] == 'redhat'
   Timeout.timeout(120) do
     loop do
       check_rhel_repo = Mixlib::ShellOut.new('yum repolist | grep ^rhel-x86_64-server').run_command
-      check_rhel_repo.exitstatus != 0 ? sleep(2) : break
+      if check_rhel_repo.exitstatus == 0
+        break
+      else
+        Mixlib::ShellOut.new('yum clean expire-cache').run_command
+        sleep(1)
+      end
     end
   end
 end
