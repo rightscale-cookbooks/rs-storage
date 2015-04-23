@@ -24,15 +24,10 @@ end
 # RHEL on some clouds take some time to add RHEL repos.
 # Check and wait a few seconds if RHEL repos are not yet installed.
 if node['platform'] == 'redhat'
-  Timeout.timeout(120) do
+  Timeout.timeout(300) do
     loop do
       check_rhel_repo = Mixlib::ShellOut.new('yum repolist | grep ^rhel-x86_64-server').run_command
-      if check_rhel_repo.exitstatus == 0
-        break
-      else
-        Mixlib::ShellOut.new('yum clean expire-cache').run_command
-        sleep(1)
-      end
+      check_rhel_repo.exitstatus == 0 ? break : sleep(1)
     end
   end
 end
