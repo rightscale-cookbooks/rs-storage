@@ -6,7 +6,7 @@ This file is used to list changes made in each version of the rs-storage cookboo
 v1.0.6
 ------
 
-- On RHEL, check and wait for RHEL repos to be installed. 
+- On RHEL, depending on cloud, check and wait for RHEL repos to be installed.
 
 v1.0.5
 ------
