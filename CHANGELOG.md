@@ -3,6 +3,11 @@ rs-storage Cookbook CHANGELOG
 
 This file is used to list changes made in each version of the rs-storage cookbook.
 
+v1.0.6
+------
+
+- On RHEL, depending on cloud, check and wait for RHEL repos to be installed.
+
 v1.0.5
 ------
 
