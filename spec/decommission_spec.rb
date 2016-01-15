@@ -14,20 +14,13 @@ describe 'rs-storage::decommission' do
   context 'rs-storage/device/destroy_on_decommission is set to true' do
     let(:chef_runner) do
       ChefSpec::Runner.new do |node|
+        node.set["rightscale"]["decom_reason"] = 'terminate'
         node.set['rs-storage']['device']['destroy_on_decommission'] = true
       end
     end
     let(:nickname) { chef_runner.converge(described_recipe).node['rs-storage']['device']['nickname'] }
 
-    context 'RightScale run state is shutting-down:terminate' do
-      before do
-        rs_state = double
-        Mixlib::ShellOut.stub(:new).with('rs_state --type=run').and_return(rs_state)
-        allow(rs_state).to receive(:run_command)
-        allow(rs_state).to receive(:error!)
-        allow(rs_state).to receive(:live_stream=)
-        allow(rs_state).to receive(:stdout).and_return('shutting-down:terminate')
-      end
+    context 'RightScale run state is terminate' do
 
       context 'LVM is not used' do
         before do
@@ -107,18 +100,11 @@ describe 'rs-storage::decommission' do
       end
     end
 
-    ['shutting-down:reboot', 'shutting-down:stop'].each do |state|
+    ['reboot', 'stop'].each do |state|
       context "RightScale run state is #{state}" do
-        before do
-          rs_state = double
-          Mixlib::ShellOut.stub(:new).with('rs_state --type=run').and_return(rs_state)
-          allow(rs_state).to receive(:run_command)
-          allow(rs_state).to receive(:error!)
-          allow(rs_state).to receive(:live_stream=)
-          allow(rs_state).to receive(:stdout).and_return(state)
-        end
-
+  
         let(:chef_run) do
+          chef_runner.node.set["rightscale"]["decom_reason"] = state
           chef_runner.converge(described_recipe)
         end
 
