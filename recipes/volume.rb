@@ -25,11 +25,6 @@ detach_timeout = node['rs-storage']['device']['detach_timeout'].to_i
 device_nickname = node['rs-storage']['device']['nickname']
 size = node['rs-storage']['device']['volume_size'].to_i
 
-execute "set decommission timeout to #{detach_timeout}" do
-  command "rs_config --set decommission_timeout #{detach_timeout}"
-  not_if "[ `rs_config --get decommission_timeout` -eq #{detach_timeout} ]"
-end
-
 
 # Cloud-specific volume options
 volume_options = {}
