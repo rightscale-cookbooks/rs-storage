@@ -27,7 +27,7 @@ if node['rs-storage']['device']['destroy_on_decommission'] != true &&
   log "rs-storage/device/destroy_on_decommission is set to '#{node['rs-storage']['device']['destroy_on_decommission']}'" +
     " skipping..."
 # Check 'rs_run_state' and skip if the instance is rebooting or entering the stop state
-elsif ['shutting-down:reboot', 'shutting-down:stop', 'shutting-down:unknown'].include?(get_rs_run_state)
+elsif ['reboot', 'stop'].include?(node["rightscale"]["decom_reason"])
   log 'Skipping deletion of volumes as the instance is either rebooting or entering the stop state...'
 # Detach and delete the volumes if the above safety conditions are satisfied
 else

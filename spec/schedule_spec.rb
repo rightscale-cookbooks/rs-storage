@@ -16,7 +16,7 @@ describe 'rs-storage::schedule' do
       expect(chef_run).to create_cron("backup_schedule_#{lineage}").with(
         minute: chef_run.node['rs-storage']['schedule']['minute'],
         hour: chef_run.node['rs-storage']['schedule']['hour'],
-        command: "rs_run_recipe --policy 'rs-storage::backup' --name 'rs-storage::backup'"
+        command: "sudo rsc rl10 run_right_script /rll/run/right_script 'right_script=Storage Toolbox Backup - chef'"
       )
     end
   end
@@ -32,7 +32,7 @@ describe 'rs-storage::schedule' do
 
     it 'deletes a crontab entry' do
       expect(chef_run).to delete_cron("backup_schedule_#{lineage}").with(
-        command: "rs_run_recipe --policy 'rs-storage::backup' --name 'rs-storage::backup'"
+        command: "sudo rsc rl10 run_right_script /rll/run/right_script 'right_script=Storage Toolbox Backup - chef'"
       )
     end
   end
