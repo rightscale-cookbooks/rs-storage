@@ -3,6 +3,16 @@ rs-storage Cookbook CHANGELOG
 
 This file is used to list changes made in each version of the rs-storage cookbook.
 
+v1.2.0
+------
+
+- updated lvm cookbook to 1.6.1
+
+v1.1.0
+------
+
+- Support for RL10
+
 v1.0.7
 ------
 
