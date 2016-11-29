@@ -5,7 +5,7 @@ gem 'thor-foodcritic'
 
 group :integration do
   gem 'test-kitchen', '~> 1.2.1'
-  gem 'kitchen-vagrant'
+  gem 'kitchen-vagrant', '0.15.0'
   gem 'strainer', '~> 3.3.0'
   gem 'chefspec', '~> 3.4.0'
   gem 'travis-lint'
