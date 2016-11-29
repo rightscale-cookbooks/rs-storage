@@ -18,9 +18,9 @@ Github Repository: [https://github.com/rightscale-cookbooks/rs-storage](https://
 
 # Requirements
 
-* Requires Chef 11 or higher
+* Requires Chef 11
 * Requires Ruby 1.9 or higher
-* Requires [RightLink 10](http://docs.rightscale.com/rl10/) See cookbook version 1.0.7 for RightLink 6 support 
+* Requires [RightLink 10](http://docs.rightscale.com/rl10/) See cookbook version 1.0.7 for RightLink 6 support
 * Platform
   * Ubuntu 12.04
   * CentOS 6

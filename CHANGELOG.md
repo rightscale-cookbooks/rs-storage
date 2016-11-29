@@ -3,6 +3,11 @@ rs-storage Cookbook CHANGELOG
 
 This file is used to list changes made in each version of the rs-storage cookbook.
 
+v1.2.1
+
+- pin Gems and cookbooks using Gemfile.lock and Berksfile.lock
+
+
 v1.2.0
 ------
 
