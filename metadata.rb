@@ -6,16 +6,16 @@ description      'Provides recipes for managing volumes on a Server in a RightSc
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '1.2.2'
 
-depends 'chef_handler', '~> 1.1.6'
-depends 'seven_zip','~> 2.0.0'
-depends 'windows','1.40.0'
-depends 'filesystem', '0.10.2'
-depends 'lvm', '= 1.6.1'
+depends 'chef_handler', '~> 1.1.6'# keep for compatiblity with chef 11, can remove with chef 12
+depends 'seven_zip','~> 2.0.0'# keep for compatiblity with chef 11, can remove with chef 12
+depends 'windows','1.40.0'# keep for compatiblity with chef 11, can remove with chef 12
+depends 'filesystem', '0.10.2'# keep for compatiblity with chef 11, can remove with chef 12
+depends 'lvm', '= 1.6.1' # keep for compatiblity with chef 11, can remove with chef 12
 depends 'marker', '~> 1.0.1'
 depends 'rightscale_backup', '~> 1.2.0'
 depends 'rightscale_volume', '~> 1.3.0'
-depends 'apt', '~> 3.0.0'
-depends 'build-essential', '~> 3.2.0'
+depends 'apt', '~> 2.9.2' # keep for compatiblity with chef 11, can remove with chef 12
+depends 'build-essential', '~> 1.4' # keep for compatiblity with chef 11, can remove with chef 12
 
 recipe 'rs-storage::default', 'Sets up required dependencies for using this cookbook'
 recipe 'rs-storage::volume', 'Creates a volume and attaches it to the server'
