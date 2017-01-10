@@ -16,6 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+def log(msg)
+  Chef::Log.info msg
+end
 
 marker 'recipe_start_rightscale' do
   template 'rightscale_audit_entry.erb'

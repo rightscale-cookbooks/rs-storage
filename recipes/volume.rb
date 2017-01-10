@@ -16,15 +16,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+def log(msg)
+  Chef::Log.info msg
+end
 
-marker "recipe_start_rightscale" do
-  template "rightscale_audit_entry.erb"
+marker 'recipe_start_rightscale' do
+  template 'rightscale_audit_entry.erb'
 end
 
 detach_timeout = node['rs-storage']['device']['detach_timeout'].to_i
 device_nickname = node['rs-storage']['device']['nickname']
 size = node['rs-storage']['device']['volume_size'].to_i
-
 
 # Cloud-specific volume options
 volume_options = {}

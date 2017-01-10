@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: rs-storage
+# Cookbook Name:: ephemeral_lvm
 # Spec:: spec_helper
 #
 # Copyright (C) 2014 RightScale, Inc.
@@ -16,10 +16,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+libraries_path = File.expand_path('../../libraries', __FILE__)
+$LOAD_PATH.unshift(libraries_path) unless $LOAD_PATH.include?(libraries_path)
 
 require 'chefspec'
 require 'chefspec/berkshelf'
+require 'chefspec/cacher'
+require 'rspec/support'
 
+ChefSpec::Coverage.start!
 RSpec.configure do |config|
+  config.extend(ChefSpec::Cacher)
+  config.platform = 'ubuntu'
+  config.version = '12.04'
   config.log_level = :error
 end

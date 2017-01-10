@@ -33,7 +33,7 @@ module RsStorage
       mount = shell_out!('mount')
       mount.stdout.each_line do |line|
         if line =~ /^(.+)\s+on\s+#{mount_point}\s+/
-          device = $1
+          device = Regexp.last_match(1)
           return !!(device =~ /^\/dev\/mapper/) && shell_out("lvdisplay '#{device}'").status == 0
         end
       end
@@ -68,8 +68,8 @@ module RsStorage
       if volume_group.nil?
         Chef::Log.info "Volume group '#{volume_group_name}' is not found"
       else
-        logical_volume_names = volume_group.logical_volumes.map { |logical_volume| logical_volume.name }
-        physical_volume_names = volume_group.physical_volumes.map { |physical_volume| physical_volume.name }
+        logical_volume_names = volume_group.logical_volumes.map(&:name)
+        physical_volume_names = volume_group.physical_volumes.map(&:name)
 
         # Remove the logical volumes
         logical_volume_names.each do |logical_volume_name|

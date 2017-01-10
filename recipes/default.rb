@@ -17,23 +17,20 @@
 # limitations under the License.
 #
 
-marker "recipe_start_rightscale" do
-  template "rightscale_audit_entry.erb"
+marker 'recipe_start_rightscale' do
+  template 'rightscale_audit_entry.erb'
 end
 
 # RHEL on some clouds take some time to add RHEL repos.
 # Check and wait a few seconds if RHEL repos are not yet installed.
 if node['platform'] == 'redhat'
   if !node.attribute?('cloud') || !node['cloud'].attribute?('provider') || !node.attribute?(node['cloud']['provider'])
-    log "Not running on a known cloud - skipping check for RHEL repo"
+    log 'Not running on a known cloud - skipping check for RHEL repo'
   else
     # Depending on cloud, add string returned by 'yum --cacheonly repolist' to determine if RHEL repo has been added.
-    case node['cloud']['provider']
-    when 'rackspace'
-      repo_id_partial = 'rhel-x86_64-server'
-    else
-      # Check to be skipped since cloud not in list.
-      repo_id_partial = nil
+    repo_id_partial = case node['cloud']['provider']
+                      when 'rackspace'
+                        'rhel-x86_64-server'
     end
 
     unless repo_id_partial.nil?

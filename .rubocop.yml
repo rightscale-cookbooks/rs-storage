@@ -1,0 +1,30 @@
+AllCops:
+  Exclude:
+    - 'berks-cookbooks/**/*'
+    - 'knife.rb'
+Style/AccessorMethodName:
+  Exclude:
+    - 'Rakefile'
+    - 'libraries/helper.rb'
+Lint/UselessAssignment:
+  Exclude:
+    - 'recipes/stripe.rb'
+    - 'recipes/volume.rb'
+Style/PredicateName:
+  Exclude:
+    - 'libraries/helper.rb'
+Lint/EndAlignment:
+  Exclude:
+    - 'recipes/default.rb'
+Metrics/BlockNesting:
+  Exclude:
+    - 'recipes/default.rb'
+Style/DoubleNegation:
+  Exclude:
+    - 'libraries/helper.rb'
+Style/RegexpLiteral:
+  Exclude:
+    - 'libraries/helper.rb'
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - 'recipes/stripe.rb'

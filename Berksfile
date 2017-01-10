@@ -1,6 +1,7 @@
-site :opscode
+source 'https://supermarket.chef.io'
 
-cookbook "rightscale_volume", github: 'rightscale-cookbooks/rightscale_volume'
-cookbook "rightscale_backup", github: 'rightscale-cookbooks/rightscale_backup'
-cookbook 'windows', '1.40.0'# keep for compatiblity with chef 11, can remove with chef 12
 metadata
+
+cookbook 'filesystem', github: 'rightscale-cookbooks-contrib/filesystem_cookbook', branch: 'update_lvm_cookbook_dependency_3'
+cookbook 'rightscale_volume', github: 'rightscale-cookbooks/rightscale_volume'
+cookbook 'rightscale_backup', github: 'rightscale-cookbooks/rightscale_backup'

@@ -3,7 +3,7 @@ require_relative 'spec_helper.rb'
 describe 'rs-storage::schedule' do
   context 'rs-storage/schedule/enable is true' do
     let(:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['rs-storage']['schedule']['enable'] = true
         node.set['rs-storage']['backup']['lineage'] = 'testing'
         node.set['rs-storage']['schedule']['hour'] = '10'
@@ -23,7 +23,7 @@ describe 'rs-storage::schedule' do
 
   context 'rs-storage/schedule/enable is false' do
     let(:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['rs-storage']['schedule']['enable'] = false
         node.set['rs-storage']['backup']['lineage'] = 'testing'
       end.converge(described_recipe)
@@ -39,7 +39,7 @@ describe 'rs-storage::schedule' do
 
   context 'rs-storage/schedule/hour or rs-storage/schedule/minute missing' do
     let(:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['rs-storage']['backup']['lineage'] = 'testing'
         node.set['rs-storage']['schedule']['enable'] = true
         node.set['rs-storage']['schedule']['hour'] = '10'
