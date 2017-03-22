@@ -4,14 +4,14 @@ maintainer_email 'cookbooks@rightscale.com'
 license          'Apache 2.0'
 description      'Provides recipes for managing volumes on a Server in a RightScale supported cloud'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '2.0.0'
+version          '2.0.1'
 issues_url       'https://github.com/rightscale-cookbooks/rs-storage/issues' if respond_to?(:issues_url)
 source_url       'https://github.com/rightscale-cookbooks/rs-storage' if respond_to?(:source_url)
 chef_version '>= 12.0' if respond_to?(:chef_version)
 
 depends 'chef_handler'
-depends 'filesystem'
-depends 'lvm', '~> 3.1'
+depends 'filesystem', '>= 0.11.1'
+depends 'lvm', '>= 3.0'
 depends 'marker'
 depends 'rightscale_backup', '~> 2.0.0'
 depends 'rightscale_volume', '~> 2.0.0'

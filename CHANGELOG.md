@@ -3,6 +3,12 @@ rs-storage Cookbook CHANGELOG
 
 This file is used to list changes made in each version of the rs-storage cookbook.
 
+v2.0.1
+------
+- loosened lvm lock, so that it can keep up with lvm changes.
+- updates filesystem cookbook to >= 0.11.1 to use the supermarket version and \
+  fix the frozen? issue.
+
 v2.0.0
 ------
 
